@@ -13,7 +13,31 @@
         <br>
         <textarea id="txtMessage" class="form-control" placeholder="Message"></textarea>
         <br>
-        <button id="send" class="btn btn-success">Send</button>
+        <button id="send" type="submit" class="btn btn-success">Send</button>
     </div>
     <div id="messages"></div>
 </div>
+<script>
+    $(() => {
+        $("#send").click(() => {
+           // alert("hi");
+            var chatMessage = {
+                name: $("#txtName").val(), chat: $("#txtMessage").val()
+            }
+        //    alert(chatMessage);
+            postChat(chatMessage);
+        })
+    });
+    function postChat(chat) {
+       // alert(chat);
+        $.post("http://localhost:3000/chats", chat);
+}
+function getChats() {
+     $.get("/chats", (chats) => {
+         chats.forEach(addChat)
+     })
+}
+function addChat(chatObj){
+    $("#messages").append(`<h5>${chatObj.name} </h5><p>${chatObj.chat}</p>`);
+}
+</script>
