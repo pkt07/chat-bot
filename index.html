@@ -4,9 +4,10 @@
 <script src="https://code.jquery.com/jquery-3.2.1.min.js" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.js"></script>
 <div class="container">
     <br>
-    <div class="jumbotron">
+    <form class="jumbotron" method="POST" action="/notification">
         <h1 class="dispaly-4">Start Chatting</h1>
         <br>
         <input id="txtName" class="form-control" placeholder="Name" type="text">
@@ -14,7 +15,7 @@
         <textarea id="txtMessage" class="form-control" placeholder="Message"></textarea>
         <br>
         <button id="send" type="submit" class="btn btn-success">Send</button>
-    </div>
+    </form>
     <div id="messages"></div>
 </div>
 <script>
@@ -26,6 +27,7 @@
             }
         //    alert(chatMessage);
             postChat(chatMessage);
+
         })
     });
     function postChat(chat) {
